@@ -354,7 +354,7 @@ if(isset($_POST['submit'])){
 <body>
 	<div class="container">
 		<form method="POST">
-			<h2>INSTAGRAM DOWNLOADER!</h2>
+			<h2><a href="index.php">INSTAGRAM DOWNLOADER!</a></h2>
 			<br>
 			<?php
 			if(isset($_SESSION['alert'])){
