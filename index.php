@@ -4,24 +4,43 @@ include 'simple-html-dom.php';
 if(isset($_POST['submit'])){
 	$plink = $_POST['link'];
 	if(!empty($plink)){
-		$api_url = 'https://bigbangram.com/ing-post-api.php';
-		$data = 'url='.$plink.'&dowload=post';
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $api_url);
-		curl_setopt($ch, CURLOPT_POST, 1);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		$server_output = curl_exec($ch);
-		if(strpos($server_output, 'private account')){
-			$_SESSION['alert'] = '<div class="alert alert-danger alert-white rounded"><div class="icon"><i class="fa fa-times-circle"></i></div><strong>Privete Account or Invalid url.</strong></div><br>';
+		if(strpos($plink, 'instagram.com/tv/')){
+			$api_url = 'https://bigbangram.com/ing-post-api.php';
+			$data = 'url='.$plink.'&dowload=igtv';
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $api_url);
+			curl_setopt($ch, CURLOPT_POST, 1);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			$server_output = curl_exec($ch);
+			if(strpos($server_output, 'private account')){
+				$_SESSION['alert'] = '<div class="alert alert-danger alert-white rounded"><div class="icon"><i class="fa fa-times-circle"></i></div><strong>Privete Account or Invalid url.</strong></div><br>';
+			}else{
+				$_SESSION['alert'] = '<div class="alert alert-success alert-white rounded"><div class="icon"><i class="fa fa-check"></i></div><strong>Success!</strong></div><br>';
+				$_SESSION['success'] = 'success.';
+				$html = str_get_html($server_output);
+				$imgs = $html->find('div[class=for-img] video, div[class=for-img] img');
+				$dlink = $html->find('a[rel=noopener noreferrer]');
+			}
 		}else{
-			$_SESSION['alert'] = '<div class="alert alert-success alert-white rounded"><div class="icon"><i class="fa fa-check"></i></div><strong>Success!</strong></div><br>';
-			$_SESSION['success'] = 'success.';
-			$html = str_get_html($server_output);
-			$imgs = $html->find('div[class=for-img] video, div[class=for-img] img');
-			$dlink = $html->find('a[rel=noopener noreferrer]');
+			$api_url = 'https://bigbangram.com/ing-post-api.php';
+			$data = 'url='.$plink.'&dowload=post';
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $api_url);
+			curl_setopt($ch, CURLOPT_POST, 1);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			$server_output = curl_exec($ch);
+			if(strpos($server_output, 'private account')){
+				$_SESSION['alert'] = '<div class="alert alert-danger alert-white rounded"><div class="icon"><i class="fa fa-times-circle"></i></div><strong>Privete Account or Invalid url.</strong></div><br>';
+			}else{
+				$_SESSION['alert'] = '<div class="alert alert-success alert-white rounded"><div class="icon"><i class="fa fa-check"></i></div><strong>Success!</strong></div><br>';
+				$_SESSION['success'] = 'success.';
+				$html = str_get_html($server_output);
+				$imgs = $html->find('div[class=for-img] video, div[class=for-img] img');
+				$dlink = $html->find('a[rel=noopener noreferrer]');
+			}
 		}
-
 	}else{
 		$_SESSION['alert'] = '<div class="alert alert-danger alert-white rounded"><div class="icon"><i class="fa fa-times-circle"></i></div><strong>Url cannot be empty.</strong></div><br>';
 	}
