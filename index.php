@@ -106,7 +106,7 @@ if(isset($_POST['submit'])){
 			border-bottom: 3px solid #d9534f;
 			transition: .5s;
 		}
-		.button{
+		.button {
 			height: 35px;
 			width: 95%;
 			background: linear-gradient(90deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
