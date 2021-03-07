@@ -381,7 +381,7 @@ if(isset($_POST['submit'])){
 			}
 			if(!isset($_SESSION['alert'])){
 			?>
-			<input type="text" name="link" placeholder="https://www.instagram.com/p/CE4s12lJd1y/" autocomplete="off">
+			<input type="text" name="link" placeholder="Post or IGTV Url" autocomplete="off">
 			<br><br>
 			<input type="submit" name="submit" value="DOWNLOAD" class="button">
 			<?php
