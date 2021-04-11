@@ -7,7 +7,7 @@ N.B: Now you can download IGTV video also.
   <li><a href="https://fb.me/AlSayeedOfficial">Al Sayeed</a></li>
   <li><a href="https://simplehtmldom.sourceforge.io/">PHP Simple HTML DOM Parser</a></li>
 </ul>
-# Liked this script?
+<h1>Liked this script?</h1>
 <ul>
   <li>Donate via Bitcoin: <b>14V5V18dea2UCGdsyx6CJkrsDMy1yKegrh</b></li>
 </ul>
